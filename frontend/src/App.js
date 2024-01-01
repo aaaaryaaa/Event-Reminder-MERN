@@ -1,9 +1,34 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./Layout";
+import About from './pages/About';
+import EventReminder from './pages/EventReminder';
+import Home from './pages/Home';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <EventReminder />
+      },
+      {
+        path: "about",
+        element: <About />
+      },
+      {
+        path: "home",
+        element: <Home />
+      }
+    ]
+  }
+])
 
 function App() {
   return (
     <div className="App">
-      <h2 className="text-center text-blue-700">Hello world</h2>
-      <button className="btn btn-accent btn-outline">hi bro</button>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
