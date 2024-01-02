@@ -22,7 +22,7 @@ export default function EventReminder() {
     }, [dispatch])
 
     return (
-        <div className="grid grid-cols-4 mt-16 mx-24">
+        <div className="grid grid-cols-4 mt-16 mx-36">
             <div className="col-span-3 p-10 mt-20">
                 <div className="carousel carousel-center max-w-2xl h-96 p-4 space-x-4 bg-neutral rounded-box">
                     {reminders && reminders.map((reminder) => (

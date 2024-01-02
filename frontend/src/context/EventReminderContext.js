@@ -18,26 +18,17 @@ const eventReminderReducer = (state, action) => {
                     r._id !== action.payload._id
                 )
             }
-        case 'GET_EXPIREDREMINDERS':
-            return {
+        case 'GET_UPCOMINGREMINDERS':
+            return{
                 expiredreminders: action.payload.filter((r) =>
                     r.validity === 'expired'
-                )
-            }
-        case 'GET_WEEKREMINDERS':
-            return {
+                ),
                 weekreminders: action.payload.filter((r) =>
                     r.validity === 'week'
-                )
-            }
-        case 'GET_MONTHREMINDERS':
-            return {
+                ),
                 monthreminders: action.payload.filter((r) =>
                     r.validity === 'month'
-                )
-            }
-        case 'GET_YEARREMINDERS':
-            return {
+                ),
                 yearreminders: action.payload.filter((r) =>
                     r.validity === 'year'
                 )
