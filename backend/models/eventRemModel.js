@@ -10,10 +10,10 @@ const eventRemSchema = new Schema({
     },
     desc: {
         type: String,
-        required: false 
+        required: false //DESC not really required
     },
     target: {
-        type: Date, 
+        type: Date,
         required: true
     },
     validity: {
