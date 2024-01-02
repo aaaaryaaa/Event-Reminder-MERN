@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEventReminderContext } from '../hooks/useEventReminderContext'
 
-export default function EventReminderDetails({ reminder }) {
+export default function EventReminderDetails({ reminder, toggleDelete }) {
     const { dispatch } = useEventReminderContext()
 
     let validityStatus
@@ -40,10 +40,13 @@ export default function EventReminderDetails({ reminder }) {
                         Status: {validityStatus}
                     </p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-accent btn-outline font-extrabold" onClick={handleDelete}>Delete Reminder</button>
+                        {toggleDelete.toggle ?
+                            <button className="btn btn-accent btn-outline font-extrabold" onClick={handleDelete}>Delete Reminder</button> : ''
+                        }
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
