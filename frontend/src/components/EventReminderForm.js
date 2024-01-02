@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { useEventReminderContext } from '../hooks/useEventReminderContext';
 
 export default function EventReminderForm() {
+    //default date
+    var curr = new Date();
+    curr.setDate(curr.getDate() + 1);
+    var date = curr.toISOString().substring(0, 10);
 
     //using context
-    const {dispatch} = useEventReminderContext()
-    
+    const { dispatch } = useEventReminderContext()
+
     //setting states
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
     const [target, setTarget] = useState(null)
-    const [validity, setValidity] = useState('.')
+    const [validity, setValidity] = useState('')
     const [error, setError] = useState(null)
 
     //handling form submission
@@ -40,7 +44,7 @@ export default function EventReminderForm() {
             setTarget(null)
             setError(null)
             console.log('New workout added', json)
-            dispatch({type: 'CREATE_REMINDER', payload: json})
+            dispatch({ type: 'CREATE_REMINDER', payload: json })
         }
     }
 
@@ -66,9 +70,9 @@ export default function EventReminderForm() {
 
                         <div className='flex flex-col p-3'>
                             <label htmlFor="target">Pick date to schedule your reminder: </label>
-                            <input id="target" type="date" value={null} 
+                            <input id="target" type="date" value={date}
                                 onChange={(e) => {
-                                    setTarget(new Date(e.target.value+"T00:00:00.000Z"))
+                                    setTarget(new Date(e.target.value + "T00:00:00.000Z"))
                                 }}
                                 className='input input-bordered input-accent w-full max-w-xs' />
                         </div>

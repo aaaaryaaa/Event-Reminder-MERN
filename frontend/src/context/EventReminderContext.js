@@ -12,6 +12,12 @@ const eventReminderReducer = (state, action) => {
             return{
                 reminders: [action.payload, ...state.reminders]
             }
+        case 'DELETE_REMINDER':
+            return{
+                reminders: state.reminders.filter((r)=>
+                    r._id !== action.payload._id
+                )
+            }
         default:
             return state
     }

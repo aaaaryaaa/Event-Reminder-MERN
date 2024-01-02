@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
-import About from './pages/About';
 import EventReminder from './pages/EventReminder';
 import Home from './pages/Home';
+import UpcomingReminder from "./pages/UpcomingReminder";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
         element: <EventReminder />
       },
       {
-        path: "about",
-        element: <About />
+        path: "upcoming",
+        element: <UpcomingReminder />
       },
       {
         path: "home",

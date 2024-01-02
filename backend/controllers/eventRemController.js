@@ -47,7 +47,7 @@ const deleteReminder = async (req, res) => {
         return res.status(404).json({error: 'No such reminder'})
     }
 
-    const reminder = await eventRemModel.findByIdAndDelete(id)
+    const reminder = await eventRemModel.findOneAndDelete({_id:id})
 
     if(!reminder){
         return res.status(404).json({error: 'No such reminder'})
@@ -65,7 +65,7 @@ const updateReminder = async (req, res) => {
         return res.status(404).json({error: 'No such reminder'})
     }
 
-    const reminder = await eventRemModel.findByIdAndUpdate(id, {
+    const reminder = await eventRemModel.findByIdAndUpdate({_id:id}, {
         ...req.body
     })
 
