@@ -13,7 +13,7 @@ export default function EventReminderForm() {
     //setting states
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
-    const [target, setTarget] = useState(null)
+    const [target, setTarget] = useState(curr)
     const [validity, setValidity] = useState('')
     const [error, setError] = useState(null)
 
@@ -22,7 +22,6 @@ export default function EventReminderForm() {
         e.preventDefault()
 
         const reminder = { title, desc, target, validity }
-        console.log(reminder)
 
         const response = await fetch('/api/eventrem', {
             method: 'POST',
@@ -70,14 +69,22 @@ export default function EventReminderForm() {
 
                         <div className='flex flex-col p-3'>
                             <label htmlFor="target">Pick date to schedule your reminder: </label>
-                            <input id="target" type="date" value={date}
+                            <input id="target" type="date" defaultValue={date}
                                 onChange={(e) => {
                                     setTarget(new Date(e.target.value + "T00:00:00.000Z"))
                                 }}
                                 className='input input-bordered input-accent w-full max-w-xs' />
                         </div>
 
-                        <div className='p-3'><button className='btn btn-outline btn-accent' onClick={() => { setValidity('soon') }}>Submit</button></div>
+                        <div className='p-3'>
+                            <button className='btn btn-outline btn-accent'
+                                onClick={() => {
+                                    if(target.getMonth()-curr.getMonth()>0) setValidity('year')
+                                    else if(target.getDate()-curr.getDate()<0) setValidity('expired')
+                                    else if(target.getDate()-curr.getDate()<=7) setValidity('week')
+                                    else if(target.getDate()-curr.getDate()<=30) setValidity('month')
+                                }}>Submit</button>
+                        </div>
                     </form>
                     {error &&
                         <div className='outline mx-3 outline-red-600 rounded-lg p-2 bg-red-200 text-red-600'>{error}</div>
