@@ -79,7 +79,8 @@ export default function EventReminderForm() {
                         <div className='p-3'>
                             <button className='btn btn-outline btn-accent'
                                 onClick={() => {
-                                    if(target.getMonth()-curr.getMonth()>0) setValidity('year')
+                                    if(target.getFullYear()-curr.getFullYear()) setValidity('expired')
+                                    else if(target.getMonth()-curr.getMonth()>0) setValidity('year')
                                     else if(target.getDate()-curr.getDate()<0) setValidity('expired')
                                     else if(target.getDate()-curr.getDate()<=7) setValidity('week')
                                     else if(target.getDate()-curr.getDate()<=30) setValidity('month')
