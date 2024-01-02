@@ -28,7 +28,6 @@ export default function EventReminderDetails({ reminder }) {
             dispatch({ type: 'DELETE_REMINDER', payload: json })
         }
     }
-
     return (
         <div className="carousel-item">
             <div className="card w-96 bg-base-200 text-white-content">

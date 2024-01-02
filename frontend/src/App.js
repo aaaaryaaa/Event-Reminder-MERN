@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       {
         path: "upcoming",
         element: <UpcomingReminder />
+
       },
       {
         path: "home",

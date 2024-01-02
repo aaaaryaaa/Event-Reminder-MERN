@@ -14,7 +14,6 @@ export default function EventReminder() {
 
             if (response.ok) {
                 dispatch({ type: 'GET_ALLREMINDERS', payload: json })
-                // setReminders(json)
             }
         }
 

@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 
 //get all
 const getAllReminders = async (req, res) => {
+
     const allReminders = await eventRemModel.find({}).sort({ createdAt: -1 })
+
 
     res.status(200).json(allReminders)
 }
@@ -47,7 +49,9 @@ const deleteReminder = async (req, res) => {
         return res.status(404).json({error: 'No such reminder'})
     }
 
+
     const reminder = await eventRemModel.findOneAndDelete({_id:id})
+
 
     if(!reminder){
         return res.status(404).json({error: 'No such reminder'})
@@ -65,7 +69,9 @@ const updateReminder = async (req, res) => {
         return res.status(404).json({error: 'No such reminder'})
     }
 
+
     const reminder = await eventRemModel.findByIdAndUpdate({_id:id}, {
+
         ...req.body
     })
 

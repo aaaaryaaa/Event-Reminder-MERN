@@ -13,7 +13,7 @@ const eventRemSchema = new Schema({
         required: false //DESC not really required
     },
     target: {
-        type: Date, //NOT SURE IF THIS WORKS
+        type: Date,
         required: true
     },
     validity: {
