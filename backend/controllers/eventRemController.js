@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 //get all
 const getAllReminders = async (req, res) => {
-    const allReminders = await eventRemModel.find({}).sort({ createdAt: 1 })
+    const allReminders = await eventRemModel.find({}).sort({ createdAt: -1 })
 
     res.status(200).json(allReminders)
 }
