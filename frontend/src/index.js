@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { EventReminderContextProvider } from './context/EventReminderContext';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <EventReminderContextProvider>
+      <App />
+    </EventReminderContextProvider>
   </React.StrictMode>
 );
