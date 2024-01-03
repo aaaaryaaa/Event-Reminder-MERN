@@ -16,6 +16,7 @@ export default function EventReminderForm() {
     const [target, setTarget] = useState(curr)
     const [validity, setValidity] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     //handling form submission
     const handleSubmit = async (e) => {
@@ -35,13 +36,14 @@ export default function EventReminderForm() {
 
         if (!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
 
         if (response.ok) {
             setTitle('')
             setDesc('')
-            setTarget(null)
             setError(null)
+            setEmptyFields([])
             console.log('New workout added', json)
             dispatch({ type: 'CREATE_REMINDER', payload: json })
         }
@@ -59,7 +61,8 @@ export default function EventReminderForm() {
 
                         <div className='flex flex-col p-3'>
                             <label htmlFor="title">Enter Title: </label>
-                            <input id="title" type="text" value={title} placeholder="Enter Title" onChange={(e) => { setTitle(e.target.value) }} className="input input-bordered input-accent w-full max-w-xs" />
+                            <input id="title" type="text" value={title} placeholder="Enter Title" onChange={(e) => { setTitle(e.target.value) }} 
+                            className={emptyFields.includes('title') ? "input input-bordered border-red-600 w-full max-w-xs" : "input input-bordered input-accent w-full max-w-xs"} />
                         </div>
 
                         <div className='flex flex-col p-3'>

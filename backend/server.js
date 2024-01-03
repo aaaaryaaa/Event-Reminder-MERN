@@ -21,10 +21,11 @@ app.use((req, res, next) => {
 app.use('/api/eventrem', eventRemRoutes)
 
 //connecting to mongodb using mongoose
+const port = process.env.PORT || 4000
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         //server listening to PORT
-        app.listen(process.env.PORT, () => {
+        app.listen(port, () => {
             console.log('connected to db & listening on port', process.env.PORT)
         })
     })
